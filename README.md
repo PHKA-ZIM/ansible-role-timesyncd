@@ -24,8 +24,9 @@ ansible-galaxy install -r requirements.yml --roles-path ./roles
   connection: local
   roles:
     - role: ansible-role-timesyncd
-      ntp: 'ntp.ubuntu.com'
-      timezone: 'Etc/UTC'
+      vars:
+        ntp: 'ntp.ubuntu.com'
+        timezone: 'Etc/UTC'
 ```
 
 - All available role vars can be found in `defaults`
