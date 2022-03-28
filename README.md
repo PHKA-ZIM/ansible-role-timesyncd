@@ -20,8 +20,6 @@ ansible-galaxy install -r requirements.yml --roles-path ./roles
 - Import role and override role variables, e.g.
 ```
 - name: Setup timesyncd
-  hosts: localhost
-  connection: local
   roles:
     - role: ansible-role-timesyncd
       vars:
