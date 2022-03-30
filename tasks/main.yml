@@ -1,15 +1,15 @@
 ---
 - name: Change ntp in timesyncd configuration
-  when: ntp|length > 0
+  when: timesyncd_ntp | length > 0
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/systemd/timesyncd.conf
     regexp: "^#?NTP="
-    line: "NTP={{ ntp }}"
+    line: "NTP={{ timesyncd_ntp }}"
   notify: restart systemd-timesyncd
 
 - name: Restore ntp in timesyncd configuration
-  when: ntp|length == 0
+  when: timesyncd_ntp | length == 0
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/systemd/timesyncd.conf
@@ -18,16 +18,16 @@
   notify: restart systemd-timesyncd
 
 - name: Change fallback_ntp in timesyncd configuration
-  when: fallback_ntp|length > 0
+  when: timesyncd_fallback_ntp | length > 0
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/systemd/timesyncd.conf
     regexp: "^#?FallbackNTP="
-    line: "FallbackNTP={{ fallback_ntp }}"
+    line: "FallbackNTP={{ timesyncd_fallback_ntp }}"
   notify: restart systemd-timesyncd
 
 - name: Restore fallback_ntp in timesyncd configuration
-  when: fallback_ntp|length == 0
+  when: timesyncd_fallback_ntp | length == 0
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/systemd/timesyncd.conf
@@ -36,16 +36,16 @@
   notify: restart systemd-timesyncd
 
 - name: Change root_distance_max_sec in timesyncd configuration
-  when: root_distance_max_sec|length > 0
+  when: timesyncd_root_distance_max_sec | length > 0
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/systemd/timesyncd.conf
     regexp: "^#?RootDistanceMaxSec="
-    line: "RootDistanceMaxSec={{ root_distance_max_sec }}"
+    line: "RootDistanceMaxSec={{ timesyncd_root_distance_max_sec }}"
   notify: restart systemd-timesyncd
 
 - name: Restore root_distance_max_sec in timesyncd configuration
-  when: root_distance_max_sec|length == 0
+  when: timesyncd_root_distance_max_sec | length == 0
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/systemd/timesyncd.conf
@@ -54,16 +54,16 @@
   notify: restart systemd-timesyncd
 
 - name: Change poll_interval_min_sec in timesyncd configuration
-  when: poll_interval_min_sec|length > 0
+  when: timesyncd_poll_interval_min_sec | length > 0
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/systemd/timesyncd.conf
     regexp: "^#?PollIntervalMinSec="
-    line: "PollIntervalMinSec={{ poll_interval_min_sec }}"
+    line: "PollIntervalMinSec={{ timesyncd_poll_interval_min_sec }}"
   notify: restart systemd-timesyncd
 
 - name: Restore poll_interval_min_sec in timesyncd configuration
-  when: poll_interval_min_sec|length == 0
+  when: timesyncd_poll_interval_min_sec | length == 0
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/systemd/timesyncd.conf
@@ -72,16 +72,16 @@
   notify: restart systemd-timesyncd
 
 - name: Change poll_interval_max_sec in timesyncd configuration
-  when: poll_interval_max_sec|length > 0
+  when: timesyncd_poll_interval_max_sec | length > 0
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/systemd/timesyncd.conf
     regexp: "^#?PollIntervalMaxSec="
-    line: "PollIntervalMaxSec={{ poll_interval_max_sec }}"
+    line: "PollIntervalMaxSec={{ timesyncd_poll_interval_max_sec }}"
   notify: restart systemd-timesyncd
 
 - name: Restore poll_interval_max_sec in timesyncd configuration
-  when: poll_interval_max_sec|length == 0
+  when: timesyncd_poll_interval_max_sec | length == 0
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/systemd/timesyncd.conf
@@ -90,8 +90,8 @@
   notify: restart systemd-timesyncd
 
 - name: Set timezone
-  when: timezone|length > 0
+  when: timesyncd_timezone | length > 0
   become: yes
   community.general.timezone:
-    name: "{{ timezone }}"
+    name: "{{ timesyncd_timezone }}"
   notify: restart systemd-timesyncd
