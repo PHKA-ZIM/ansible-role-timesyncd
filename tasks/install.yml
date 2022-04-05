@@ -1,0 +1,20 @@
+---
+- name: Copy timesynced config files
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ timesynced_drop-in_path }}"
+    owner: "{{ timesynced_drop-in_owner }}"
+    group: "{{ timesynced_drop-in_group }}"
+    mode: "{{ timesynced_drop-in_mode }}"
+    directory_mode: "{{ timesynced_drop-in_directory_mode }}"
+  with_fileglob:
+    - "{{ timesyncd_local_path }}/*.conf"
+  notify: restart systemd-timesyncd
+
+- name: Ensure timezone is set
+  when: timesyncd_timezone | length > 0
+  become: true
+  community.general.timezone:
+    name: "{{ timesyncd_timezone }}"
+  notify: restart systemd-timesyncd

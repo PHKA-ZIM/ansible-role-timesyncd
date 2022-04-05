@@ -1,7 +1,4 @@
 ---
-timesyncd_ntp: ''
-timesyncd_fallback_ntp: ''
-timesyncd_root_distance_max_sec: ''
-timesyncd_poll_interval_min_sec: ''
-timesyncd_poll_interval_max_sec: ''
-timesyncd_timezone: Etc/UTC
+timesyncd_local_path: './timesynced.d/'
+timesyncd_timezone: "{{ timesynced_default_timezone }}"
+timesycnd_uninstall: false
