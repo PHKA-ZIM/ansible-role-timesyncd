@@ -3,11 +3,11 @@
   become: true
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ timesynced_drop-in_path }}"
-    owner: "{{ timesynced_drop-in_owner }}"
-    group: "{{ timesynced_drop-in_group }}"
-    mode: "{{ timesynced_drop-in_mode }}"
-    directory_mode: "{{ timesynced_drop-in_directory_mode }}"
+    dest: "{{ timesyncd_drop-in_path }}"
+    owner: "{{ timesyncd_drop-in_owner }}"
+    group: "{{ timesyncd_drop-in_group }}"
+    mode: "{{ timesyncd_drop-in_mode }}"
+    directory_mode: "{{ timesyncd_drop-in_directory_mode }}"
   with_fileglob:
     - "{{ timesyncd_local_path }}/*.conf"
   notify: restart systemd-timesyncd

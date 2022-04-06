@@ -1,8 +1,8 @@
 ---
 - name: Add timesynced configuration
   ansible.builtin.include_tasks: install.yml
-  when: timesynced_uninstall == false
+  when: timesyncd_uninstall == false
 
 - name: Remove timesynced configuration
   ansible.builtin.include_tasks: uninstall.yml
-  when: timesynced_uninstall == true
+  when: timesyncd_uninstall == true

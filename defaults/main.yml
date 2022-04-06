@@ -1,4 +1,4 @@
 ---
-timesyncd_local_path: './timesynced.d/'
-timesyncd_timezone: "{{ timesynced_default_timezone }}"
+timesyncd_local_path: './timesyncd.d/'
+timesyncd_timezone: "{{ timesyncd_default_timezone }}"
 timesyncd_uninstall: false

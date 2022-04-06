@@ -1,7 +1,7 @@
 ---
-timesynced_default_timezone: Etc/UTC
-timesynced_drop-in_path: /etc/systemd/timesyncd.conf.d/
-timesynced_drop-in_owner: root
-timesynced_drop-in_group: root
-timesynced_drop-in_mode: "644"
-timesynced_drop-in_directory_mode: "755"
+timesyncd_default_timezone: Etc/UTC
+timesyncd_drop-in_path: /etc/systemd/timesyncd.conf.d/
+timesyncd_drop-in_owner: root
+timesyncd_drop-in_group: root
+timesyncd_drop-in_mode: "644"
+timesyncd_drop-in_directory_mode: "755"
