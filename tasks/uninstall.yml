@@ -2,7 +2,7 @@
 - name: Remove timesyncd config files
   become: true
   ansible.builtin.file:
-    path: "{{ timesyncd_drop-in_path }}/{{ item | basename }}"
+    path: "{{ timesyncd_file_path }}/{{ item | basename }}"
     state: absent
   with_fileglob:
     - "{{ timesyncd_local_path }}/*.conf"
