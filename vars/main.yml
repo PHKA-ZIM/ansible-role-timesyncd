@@ -1,7 +1,5 @@
 ---
 timesyncd_default_timezone: Etc/UTC
 timesyncd_file_path: /etc/systemd/timesyncd.conf.d/
-timesyncd_file_owner: root
-timesyncd_file_group: root
-timesyncd_file_mode: "644"
-timesyncd_file_directory_mode: "755"
+timesyncd_file_mode: 0644
+timesyncd_file_directory_mode: 0755
