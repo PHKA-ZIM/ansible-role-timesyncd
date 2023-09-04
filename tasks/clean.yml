@@ -1,11 +1,20 @@
 ---
-- name: Remove timesyncd config files
+- name: Remove timesyncd configuration based on files
   become: true
   ansible.builtin.file:
     path: "{{ timesyncd_file_path }}/{{ item | basename }}"
     state: absent
   with_fileglob:
     - "{{ timesyncd_local_path }}/*.conf"
+  notify: restart systemd-timesyncd
+
+- name: Remove timesyncd configuration based on templates
+  become: true
+  ansible.builtin.file:
+    path: "{{ timesyncd_file_path }}/{{ item | basename | splitext | first }}"
+    state: absent
+  with_fileglob:
+    - "{{ timesyncd_local_path }}/*.conf.j2"
   notify: restart systemd-timesyncd
 
 - name: Ensure timezone is set to default

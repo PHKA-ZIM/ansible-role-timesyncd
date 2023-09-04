@@ -1,13 +1,25 @@
 ---
-- name: Copy timesynced config files
+- name: Copy timesynced files
   become: true
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ timesyncd_file_path }}"
     mode: "{{ timesyncd_file_mode }}"
     directory_mode: "{{ timesyncd_file_directory_mode }}"
+    force: true
   with_fileglob:
     - "{{ timesyncd_local_path }}/*.conf"
+  notify: restart systemd-timesyncd
+
+- name: Copy timesynced templates
+  become: true
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "{{ timesyncd_file_path }}/{{  item | basename | splitext | first }}"
+    mode: "{{ timesyncd_file_mode }}"
+    force: true
+  with_fileglob:
+    - "{{ timesyncd_local_path }}/*.conf.j2"
   notify: restart systemd-timesyncd
 
 - name: Ensure timezone is set
